@@ -3,20 +3,16 @@ import { Image, Pressable, Text, View } from "react-native";
 import { RewardCardStyles as styles } from "../styles/RewardCardStyles";
 import { RewardCardProps} from "../types";
 
-function RewardCard({ reward, onPress, disabled, testID }: RewardCardProps) {
-  const source = reward.image ?? require("../../../assets/trophy.png");
+function RewardCard({ reward, onPress,testID }: RewardCardProps) {
+  const source = require("../../../assets/trophy.png");
 
   return (
-    <Pressable
-      disabled={disabled}
+    <Pressable // componente que me permite detectar presiones, hace que la tarjeta sea interactiva y cambie de estilo cuando se presiona
       onPress={() => onPress?.(reward)}
-      style={({ pressed }) => [
-        styles.card,
-        disabled && styles.cardDisabled,
-        pressed && styles.cardPressed,
+    style={({ pressed }) => [
+    styles.card,
+    pressed && styles.cardPressed,
       ]}
-      accessibilityRole="button"
-      accessibilityLabel={`Recompensa ${reward.title} con valor de ${reward.coins} monedas`}
       hitSlop={8}
       testID={testID ?? "reward-card"}
     >

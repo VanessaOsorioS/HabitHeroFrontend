@@ -3,15 +3,14 @@ import {StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: "#FFF1CC",
     borderRadius: 20,
     padding: 15,
     alignItems: "center",
     marginBottom: 15,
   },
   avatar: {
-    width: 90,
-    height: 90,
+    width: 100,
+    height: 130,
     borderRadius: 10,
     marginRight: 15,
   },

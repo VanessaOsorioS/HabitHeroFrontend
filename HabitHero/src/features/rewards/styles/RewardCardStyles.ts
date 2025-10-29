@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
-const CARD_W = 100;
-const CARD_H = 130;
-const RADIUS  = 12;
+const CARD_W = 90;
+const CARD_H = 120;
+const RADIUS  = 20;
 
 export const RewardCardStyles = StyleSheet.create({
   card: {
@@ -13,11 +13,7 @@ export const RewardCardStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 3,
-    elevation: 2,
+    boxShadow: "3px 4px 6px rgba(154, 49, 0, 0.39)",
   },
   cardPressed: { opacity: 0.9 },
   cardDisabled: { opacity: 0.5 },
@@ -32,8 +28,7 @@ export const RewardCardStyles = StyleSheet.create({
   coinContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // evita gap por compatibilidad
   },
-  coinText: { fontSize: 14, fontWeight: "bold", color: "#E9A100", marginRight: 4 },
+  coinText: { fontSize: 14, fontWeight: "bold", color: "rgba(81, 39, 9, 1)", marginRight: 4 },
   coinIcon: { width: 14, height: 14 },
 });

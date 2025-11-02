@@ -1,69 +1,136 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Star } from "lucide-react-native";
+import React, { useState, useRef, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Animated,
+  ImageBackground,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { styles } from "./MissionCard.styles";
 
-interface Mission {
+type Mission = {
   id: number;
   title: string;
   stars: number;
   completed: boolean;
-}
-
-interface MissionCardProps {
-  mission: Mission;
-}
-
-export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
-  return (
-    <View style={[styles.card, mission.completed && styles.completedCard]}>
-      <TouchableOpacity
-        style={[
-          styles.checkbox,
-          { backgroundColor: mission.completed ? "#5E8C31" : "#5E3A1B" },
-        ]}
-      />
-      <Text style={styles.text}>{mission.title}</Text>
-      <View style={styles.stars}>
-        {Array.from({ length: mission.stars }).map((_, i) => (
-          <Star key={i} size={18} color="#FFD700" fill="#FFD700" />
-        ))}
-      </View>
-    </View>
-  );
+  description?: string;
+  date?: string;
+  reward?: number;
 };
 
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 12,
-    marginVertical: 6,
-    borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.1)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
-  },
-  completedCard: {
-    opacity: 0.8,
-    backgroundColor: "rgba(94, 140, 49, 0.4)",
-  },
-  checkbox: {
-    width: 24,
-    height: 24,
-    borderRadius: 4,
-    marginRight: 10,
-  },
-  text: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#fff",
-  },
-  stars: {
-    flexDirection: "row",
-    gap: 2,
-  },
-});
+type Props = {
+  mission: Mission;
+};
+
+const MissionCard: React.FC<Props> = ({ mission }) => {
+  const [expanded, setExpanded] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(mission.completed);
+  const animation = useRef(new Animated.Value(0)).current;
+
+  
+  useEffect(() => {
+    
+    Animated.timing(animation, {
+      toValue: expanded ? 1 : 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [expanded]);
+
+
+  const heightInterpolate = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [70, 250], 
+  });
+
+  const handlePress = () => {
+    
+    setExpanded(!expanded);
+  };
+
+  const toggleCheckbox = () => {
+    console.log("Checkbox toggled:", !isCompleted);
+    setIsCompleted(!isCompleted);
+    
+  };
+
+  return (
+    <Animated.View style={[styles.cardContainer, { height: heightInterpolate }]}>
+      <ImageBackground
+        source={require("../../../assets/leaf-bg.jpg")} 
+        imageStyle={styles.cardImage}
+        style={[styles.card, isCompleted && styles.completed]}
+      >
+        <View style={styles.header}>
+          
+          <TouchableOpacity 
+            onPress={toggleCheckbox}
+            style={styles.checkboxButton}
+            activeOpacity={0.7}
+          >
+            <View
+              style={[
+                styles.leftIndicator,
+                isCompleted 
+                  ? { backgroundColor: "#4CAF50", borderColor: "#3D2817", borderWidth: 3 }
+                  : { backgroundColor: "#8B6F47", borderColor: "#3D2817", borderWidth: 2 }
+              ]}
+            >
+              {isCompleted && (
+                <FontAwesome name="check" size={12} color="#FFF" />
+              )}
+            </View>
+          </TouchableOpacity>
+
+          
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={handlePress}
+            style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
+          >
+            <Text style={styles.title}>{mission.title}</Text>
+            <View style={styles.stars}>
+              {[...Array(mission.stars)].map((_, i) => (
+                <FontAwesome key={i} name="star" size={16} color="#FFD700" />
+              ))}
+            </View>
+          </TouchableOpacity>
+        </View>
+
+          {expanded && (
+            <View style={styles.expandedContent}>
+              <Text style={styles.description}>
+                {mission.description ||
+                  "No hay descripción disponible para esta misión."}
+              </Text>
+              <View style={styles.dateRow}>
+                <View style={styles.greenDot} />
+                <Text style={styles.date}>{mission.date || "18/10/2025"}</Text>
+              </View>
+
+              
+              <View style={styles.rewardBoxWrapper}>
+                <View style={styles.rewardBox}>
+                  <View style={styles.coinContainer}>
+                   
+                    <FontAwesome name="circle" size={50} color="#FFB300" />
+                   
+                    <View style={styles.coinSmall}>
+                      <FontAwesome name="circle" size={28} color="#FF8C00" />
+                    </View>
+                  </View>
+                  <View style={styles.rewardTextContainer}>
+                    <Text style={styles.rewardLabel}>¡Tarea completada!</Text>
+                    <Text style={styles.rewardValue}>{mission.reward || 20}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
+      </ImageBackground>
+    </Animated.View>
+  );
+};
 
 export default MissionCard;

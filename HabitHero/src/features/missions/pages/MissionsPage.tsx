@@ -75,8 +75,6 @@ const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
                 ))}
               </ScrollView>
             )}
-
-            {/* 🔹 Botón para ir a RewardPage */}
             <TouchableOpacity style={styles.button} onPress={goToRewards}>
               <Text style={styles.buttonText}>Ver Recompensas</Text>
             </TouchableOpacity>

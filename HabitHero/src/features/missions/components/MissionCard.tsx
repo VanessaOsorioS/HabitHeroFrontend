@@ -1,23 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import { Mission } from "@/src/types/mission";
+import { FontAwesome } from "@expo/vector-icons";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  View,
-  Text,
-  TouchableOpacity,
   Animated,
   ImageBackground,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
 import { styles } from "./MissionCard.styles";
-
-type Mission = {
-  id: number;
-  title: string;
-  stars: number;
-  completed: boolean;
-  description?: string;
-  date?: string;
-  reward?: number;
-};
 
 type Props = {
   mission: Mission;
@@ -25,9 +16,8 @@ type Props = {
 
 const MissionCard: React.FC<Props> = ({ mission }) => {
   const [expanded, setExpanded] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(mission.completed);
+  const [isCompleted, setIsCompleted] = useState(mission.status === "COMPLETED");
   const animation = useRef(new Animated.Value(0)).current;
-
   
   useEffect(() => {
     
@@ -91,7 +81,7 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
           >
             <Text style={styles.title}>{mission.title}</Text>
             <View style={styles.stars}>
-              {[...Array(mission.stars)].map((_, i) => (
+              {[...Array(mission.difficulty)].map((_, i) => (
                 <FontAwesome key={i} name="star" size={16} color="#FFD700" />
               ))}
             </View>
@@ -106,7 +96,7 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
               </Text>
               <View style={styles.dateRow}>
                 <View style={styles.greenDot} />
-                <Text style={styles.date}>{mission.date || "18/10/2025"}</Text>
+                <Text style={styles.date}>{mission.dueDate || "18/10/2025"}</Text>
               </View>
 
               
@@ -122,7 +112,7 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
                   </View>
                   <View style={styles.rewardTextContainer}>
                     <Text style={styles.rewardLabel}>¡Tarea completada!</Text>
-                    <Text style={styles.rewardValue}>{mission.reward || 20}</Text>
+                    <Text style={styles.rewardValue}>{20}</Text>
                   </View>
                 </View>
               </View>

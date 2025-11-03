@@ -1,24 +1,14 @@
+import { getMissions } from "@/src/services/missionsService";
+import { Mission } from "@/src/types/mission";
 import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
   ImageBackground,
   ScrollView,
+  Text,
+  View
 } from "react-native";
 import MissionCard from "../components/MissionCard";
 import { styles } from "./MissionsPage.styles";
-
-
-type Mission = {
-  id: number;
-  title: string;
-  stars: number;
-  completed: boolean;
-  description?: string;
-  date?: string;
-  reward?: number;
-};
 
 const MissionsPage: React.FC = () => {
   const [missions, setMissions] = useState<Mission[]>([]);
@@ -27,40 +17,10 @@ const MissionsPage: React.FC = () => {
   useEffect(() => {
     const fetchMissions = async () => {
       try {
-        const mockData: Mission[] = [
-          {
-            id: 1,
-            title: "Leer capítulo 3 matemática.",
-            stars: 3,
-            completed: true,
-            description:
-              "Lee el capítulo 3 del libro de matemáticas y realiza los ejercicios propuestos.",
-            date: "18/10/2025",
-            reward: 20,
-          },
-          {
-            id: 2,
-            title: "Realizar las sumas.",
-            stars: 3,
-            completed: false,
-            description:
-              "Completa todas las operaciones de suma del cuaderno número 2.",
-            date: "20/10/2025",
-            reward: 15,
-          },
-          {
-            id: 3,
-            title: "Organizar escritorio.",
-            stars: 4,
-            completed: false,
-            description:
-              "Limpia tu escritorio y organiza tus útiles escolares en orden.",
-            date: "21/10/2025",
-            reward: 10,
-          },
-        ];
-
-        setMissions(mockData);
+        
+     const missions = await getMissions();
+        console.log("Missions loaded:", missions);
+        setMissions(missions);
       } catch (error) {
         console.error("Error al cargar misiones:", error);
       } finally {

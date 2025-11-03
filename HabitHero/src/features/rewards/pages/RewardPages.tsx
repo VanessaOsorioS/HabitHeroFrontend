@@ -27,7 +27,7 @@ const [rewards, setRewards] = useState<Reward[]>([]);
       style={styles.bg}                
       resizeMode="cover"               
     >
-      <view style={styles.viewImg}>
+      <View style={styles.viewImg}>
       <ImageBackground source={require("../../../assets/backTree.png")} style={styles.bgImage}
       imageStyle={styles.panelImage}
       >
@@ -53,7 +53,7 @@ const [rewards, setRewards] = useState<Reward[]>([]);
         />
       </View>
       </ImageBackground>
-      </view>
+      </View>
     </ImageBackground>
   );
 }

@@ -24,8 +24,8 @@ const [rewards, setRewards] = useState<Reward[]>([]);
   return (
     <ImageBackground
       source={require("../../../assets/forest3.jpg")}
-      style={styles.bg}                // ✅ llena la pantalla
-      resizeMode="cover"               // ✅ que cubra sin deformar
+      style={styles.bg}                
+      resizeMode="cover"               
     >
       <view style={styles.viewImg}>
       <ImageBackground source={require("../../../assets/backTree.png")} style={styles.bgImage}
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
   // fondo de pantalla
   bg: {
     flex: 1,
-    justifyContent: "center", // centra verticalmente
-    alignItems: "center",     // centra horizontalmente
+    justifyContent: "center", 
+    alignItems: "center",     
   },
   bgImage: {
     width: 700,
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
   },
 
   panelImage: {
-    opacity: 0.75,              // ← madera suave (ajusta 0..1)
-    borderRadius: 16,           // ← mismo radio que el panel
+    opacity: 0.75,              
+    borderRadius: 16,           
   },
-  // Panel central sin medidas fijas
+
   panel: { 
     width: 500,
     height: 600,      
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  // Espacia las columnas de 3 en 3
   row: {
     justifyContent: "space-between",
     margin: 5,

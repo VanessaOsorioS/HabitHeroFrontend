@@ -1,4 +1,4 @@
-import { getMissions } from "@/src/services/missionsService";
+import { completeMission, getMissions } from "@/src/services/missionsService";
 import { Mission } from "@/src/types/mission";
 import React, { useEffect, useState } from "react";
 import {
@@ -14,22 +14,34 @@ const MissionsPage: React.FC = () => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMissions = async () => {
-      try {
-        
-     const missions = await getMissions();
-        console.log("Missions loaded:", missions);
-        setMissions(missions);
-      } catch (error) {
-        console.error("Error al cargar misiones:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchMissions = async () => {
+    try {
+      const missions = await getMissions();
+      console.log("Missions loaded:", missions);
+      setMissions(missions);
+    } catch (error) {
+      console.error("Error al cargar misiones:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchMissions();
   }, []);
+
+  const handleComplete = async (id: number) => {
+    try {
+      setLoading(true);
+      const updateMission = await completeMission(id);
+      await fetchMissions();
+
+    } catch (error) {
+      console.error("Error completing mission:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -64,8 +76,9 @@ const MissionsPage: React.FC = () => {
                 {missions.length === 0 && (
                   <Text style={styles.title}>No tienes misiones pendientes por ahora.</Text>
                 )}
+
                 {missions.map((mission) => (
-                  <MissionCard key={mission.id} mission={mission} />
+                  <MissionCard key={mission.id} mission={mission} onComplete={() => handleComplete(mission.id)} />
                 ))}
               </ScrollView>
             )}

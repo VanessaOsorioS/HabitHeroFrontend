@@ -10,8 +10,16 @@ export interface Mission {
   difficulty: number;
   daily: boolean;
   reminderEnabled: boolean;
-  status: MissionStatus;
+  statusHistories: MissionStatusHistory[];
   creationDate: string;
+}
+
+export interface MissionStatusHistory {
+  id: number
+  mission: Mission
+  missionId: number
+  status: MissionState
+  date: Date
 }
 
 export enum MissionType {
@@ -19,8 +27,10 @@ export enum MissionType {
   TASK = "TASK",
 }
 
-enum MissionStatus {
+export enum MissionState {
   COMPLETED = "COMPLETED",
-  PENDING = "PENDING",
+  PENDING = "PENDING",  
+  FAILED = "FAILED",
+  IN_PROGRESS = "IN_PROGRESS",
 }
 

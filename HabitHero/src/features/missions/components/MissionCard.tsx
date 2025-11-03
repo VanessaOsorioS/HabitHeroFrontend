@@ -12,11 +12,12 @@ import { styles } from "./MissionCard.styles";
 
 type Props = {
   mission: Mission;
+  onComplete?: (id: number) => void;
 };
 
-const MissionCard: React.FC<Props> = ({ mission }) => {
+const MissionCard: React.FC<Props> = ({ mission, onComplete }) => {
   const [expanded, setExpanded] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(mission.status === "COMPLETED");
+  const [isCompleted, setIsCompleted] = useState(false);
   const animation = useRef(new Animated.Value(0)).current;
   
   useEffect(() => {
@@ -41,7 +42,12 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
 
   const toggleCheckbox = () => {
     console.log("Checkbox toggled:", !isCompleted);
-    setIsCompleted(!isCompleted);    
+    setIsCompleted((prev) => {
+      const next = !prev;
+console.log("Mission completed state:", next);
+      if (next) onComplete?.(mission.id);
+      return next;
+    });
   };
 
   return (

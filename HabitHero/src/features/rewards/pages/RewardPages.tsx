@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet, ImageBackground } from "react-native";
 import AvatarCard from "../components/AvatarCard";
 import RewardCard from "../components/RewardCard";
-
-const rewards = [
-  { id: "1", title: "Leer capítulo 3 de matemática", coins: 20 },
-  { id: "2", title: "Algo 1", coins: 20 },
-  { id: "3", title: "Algo 2", coins: 20 },
-  { id: "4", title: "Algo 3", coins: 40 },
-  { id: "5", title: "Algo 4", coins: 5 },
-  { id: "6", title: "Algo 5", coins: 20 },
-  { id: "7", title: "Algo 6", coins: 20 },
-  { id: "8", title: "Algo 7", coins: 1 },
-];
+import { getAllRewards } from "@/src/services/rewardService";
+import { Reward } from "../types";
 
 export default function RewardsScreen() {
+const [rewards, setRewards] = useState<Reward[]>([]);
+    useEffect(() => {
+      const fetchMissions = async () => {
+        try {
+          
+       const reward = await getAllRewards();
+          setRewards(reward);
+        } catch (error) {
+          console.error("Error al cargar recompensas:", error);
+        }
+      };
+  
+      fetchMissions();
+    }, []);
+    
   return (
     <ImageBackground
       source={require("../../../assets/forest3.jpg")}
@@ -38,7 +44,7 @@ export default function RewardsScreen() {
 
         <FlatList
           data={rewards}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => (item?.id ?? '').toString()}
           renderItem={({ item }) => <RewardCard reward={item} />}
           numColumns={4}
           columnWrapperStyle={styles.row}

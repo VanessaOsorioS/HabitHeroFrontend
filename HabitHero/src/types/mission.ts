@@ -10,12 +10,17 @@ export interface Mission {
   difficulty: number;
   daily: boolean;
   reminderEnabled: boolean;
-  status: string;
+  status: MissionStatus;
   creationDate: string;
 }
 
 export enum MissionType {
   STUDY = "STUDY",
   TASK = "TASK",
+}
+
+enum MissionStatus {
+  COMPLETED = "COMPLETED",
+  PENDING = "PENDING",
 }
 

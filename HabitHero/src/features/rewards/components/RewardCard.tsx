@@ -1,10 +1,13 @@
+import { RewardType } from "@/src/types/reward";
 import React, { memo } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { RewardCardStyles as styles } from "../styles/RewardCardStyles";
-import { RewardCardProps} from "../types";
+import { RewardCardProps } from "../types";
 
-function RewardCard({ reward, onPress,testID }: RewardCardProps) {
+function RewardCard({ reward, onPress, testID }: RewardCardProps) {
   const source = require("../../../assets/trophy.png");
+  const coinSource = require("../../../assets/coin.png");
+  const bookSource = require("../../../assets/libro.png");
 
   return (
     <Pressable // componente que me permite detectar presiones, hace que la tarjeta sea interactiva y cambie de estilo cuando se presiona
@@ -18,12 +21,13 @@ function RewardCard({ reward, onPress,testID }: RewardCardProps) {
     >
       <Image source={source} style={styles.icon} resizeMode="contain" />
       <Text style={styles.title} numberOfLines={2}>
-        {reward.title}
+        {reward.mission.title}
       </Text>
       <View style={styles.coinContainer}>
-        <Text style={styles.coinText}>{reward.coins}</Text>
+        <Text style={styles.coinText}>{reward.value}</Text>
         <Image
-          source={require("../../../assets/coin.png")}
+          source={reward.rewardType === RewardType.XP ? bookSource : 
+            reward.rewardType === RewardType.COIN ? coinSource : ""}
           style={styles.coinIcon}
           resizeMode="contain"
         />

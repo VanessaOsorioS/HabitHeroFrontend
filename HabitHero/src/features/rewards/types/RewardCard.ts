@@ -1,11 +1,4 @@
-import { ImageSourcePropType } from "react-native";
-
-export type Reward = {
-  id?: string | number;
-  title: string;
-  coins: number;
-  image?: ImageSourcePropType;
-};
+import { Reward } from "@/src/types/reward";
 
 export type RewardCardProps = {
   reward: Reward;

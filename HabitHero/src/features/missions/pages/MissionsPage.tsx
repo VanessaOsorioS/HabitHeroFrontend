@@ -61,6 +61,9 @@ const MissionsPage: React.FC = () => {
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}
               >
+                {missions.length === 0 && (
+                  <Text style={styles.title}>No tienes misiones pendientes por ahora.</Text>
+                )}
                 {missions.map((mission) => (
                   <MissionCard key={mission.id} mission={mission} />
                 ))}
@@ -72,7 +75,5 @@ const MissionsPage: React.FC = () => {
     </View>
   );
 };
-
-
 
 export default MissionsPage;

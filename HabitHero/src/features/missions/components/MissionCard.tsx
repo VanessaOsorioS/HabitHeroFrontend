@@ -41,8 +41,7 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
 
   const toggleCheckbox = () => {
     console.log("Checkbox toggled:", !isCompleted);
-    setIsCompleted(!isCompleted);
-    
+    setIsCompleted(!isCompleted);    
   };
 
   return (

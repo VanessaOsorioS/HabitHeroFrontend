@@ -5,20 +5,24 @@ import {
   ImageBackground,
   ScrollView,
   Text,
-  View
+  View,
+  TouchableOpacity,
 } from "react-native";
 import MissionCard from "../components/MissionCard";
 import { styles } from "./MissionsPage.styles";
 
-const MissionsPage: React.FC = () => {
+type Props = {
+  goToRewards?: () => void;
+};
+
+const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMissions = async () => {
       try {
-        
-     const missions = await getMissions();
+        const missions = await getMissions();
         console.log("Missions loaded:", missions);
         setMissions(missions);
       } catch (error) {
@@ -62,13 +66,20 @@ const MissionsPage: React.FC = () => {
                 showsVerticalScrollIndicator={false}
               >
                 {missions.length === 0 && (
-                  <Text style={styles.title}>No tienes misiones pendientes por ahora.</Text>
+                  <Text style={styles.title}>
+                    No tienes misiones pendientes por ahora.
+                  </Text>
                 )}
                 {missions.map((mission) => (
                   <MissionCard key={mission.id} mission={mission} />
                 ))}
               </ScrollView>
             )}
+
+            {/* 🔹 Botón para ir a RewardPage */}
+            <TouchableOpacity style={styles.button} onPress={goToRewards}>
+              <Text style={styles.buttonText}>Ver Recompensas</Text>
+            </TouchableOpacity>
           </ImageBackground>
         </View>
       </ImageBackground>

@@ -65,4 +65,19 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 50,
   },
+  button: {
+  marginTop: 20,
+  marginBottom:40,
+  backgroundColor: "#f4a261",
+  paddingVertical: 10,
+  paddingHorizontal: 20,
+  borderRadius: 10,
+  alignSelf: "center",
+},
+buttonText: {
+  color: "#fff",
+  fontWeight: "bold",
+  fontSize: 16,
+},
+
 });

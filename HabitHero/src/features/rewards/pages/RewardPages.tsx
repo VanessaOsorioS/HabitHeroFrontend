@@ -1,19 +1,33 @@
 import { getAllRewards, getXpAndCoins } from "@/src/services/rewardService";
 import { Reward } from "@/src/types/reward";
 import React, { useEffect, useState } from "react";
-import { FlatList, ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import AvatarCard from "../components/AvatarCard";
 import RewardCard from "../components/RewardCard";
 
-export default function RewardsScreen() {
+type Props = {
+  goToMissions?: () => void; 
+};
+
+export default function RewardsScreen({ goToMissions }: Props) {
   const [rewards, setRewards] = useState<Reward[]>([]);
-  const [xpAndCoins, setXpAndCoins] = useState<{ xp: number; coins: number }>({ xp: 0, coins: 0 });
+  const [xpAndCoins, setXpAndCoins] = useState<{ xp: number; coins: number }>({
+    xp: 0,
+    coins: 0,
+  });
 
   const maxXp = 1000;
-  useEffect(() => {
-    const fetchRewars = async () => {
-      try {
 
+  useEffect(() => {
+    const fetchRewards = async () => {
+      try {
         const reward = await getAllRewards();
         const xpAndCoins = await getXpAndCoins();
         setRewards(reward);
@@ -23,7 +37,7 @@ export default function RewardsScreen() {
       }
     };
 
-    fetchRewars();
+    fetchRewards();
   }, []);
 
   return (
@@ -32,8 +46,10 @@ export default function RewardsScreen() {
       style={styles.bg}
       resizeMode="cover"
     >
-      <view style={styles.viewImg}>
-        <ImageBackground source={require("../../../assets/backTree.png")} style={styles.bgImage}
+      <View style={styles.viewImg}>
+        <ImageBackground
+          source={require("../../../assets/backTree.png")}
+          style={styles.bgImage}
           imageStyle={styles.panelImage}
         >
           <View style={styles.panel}>
@@ -48,26 +64,36 @@ export default function RewardsScreen() {
             <Text style={styles.title}>Mis recompensas</Text>
 
             {rewards.length === 0 && (
-              <Text style={styles.title}>Aún no tienes recompensas registradas</Text>
+              <Text style={styles.title}>
+                Aún no tienes recompensas registradas
+              </Text>
             )}
+
             <FlatList
               data={rewards}
-              keyExtractor={(item) => (item?.id ?? '').toString()}
+              keyExtractor={(item) => (item?.id ?? "").toString()}
               renderItem={({ item }) => <RewardCard reward={item} />}
               numColumns={4}
               columnWrapperStyle={styles.row}
               contentContainerStyle={{ paddingBottom: 24 }}
               showsVerticalScrollIndicator={false}
             />
+
+            
+            {goToMissions && (
+              <TouchableOpacity style={styles.button} onPress={goToMissions}>
+                <Text style={styles.buttonText}>Volver a Misiones</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </ImageBackground>
-      </view>
+      </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  // fondo de pantalla
+  
   bg: {
     flex: 1,
     justifyContent: "center",
@@ -80,15 +106,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: "hidden",
   },
-  viewImg: {
-
-  },
-
+  viewImg: {},
   panelImage: {
     opacity: 0.75,
     borderRadius: 16,
   },
-
   panel: {
     width: 500,
     height: 600,
@@ -98,7 +120,6 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 40,
   },
-
   title: {
     fontSize: 22,
     fontWeight: "bold",
@@ -106,10 +127,21 @@ const styles = StyleSheet.create({
     color: "#4B2E05",
     marginBottom: 10,
   },
-
   row: {
     justifyContent: "space-between",
     margin: 5,
   },
+  button: {
+    marginTop: 20,
+    backgroundColor: "#4B2E05",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });
-

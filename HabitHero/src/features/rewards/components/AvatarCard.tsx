@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image} from "react-native";
-import { styles } from "../styles/AvatarCardStyles";
+import { styles } from "./AvatarCardStyles";
 import ProgressBar from "./ProgressBar";
 import { avatarCardProps as Props } from "../types";
 

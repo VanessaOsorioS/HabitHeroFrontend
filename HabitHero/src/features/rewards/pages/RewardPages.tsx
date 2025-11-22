@@ -13,7 +13,8 @@ import AvatarCard from "../components/AvatarCard";
 import RewardCard from "../components/RewardCard";
 
 type Props = {
-  goToMissions?: () => void; 
+  goToMissions?: () => void;
+  goToAvatar?: () => void;
 };
 
 export default function RewardsScreen({ goToMissions }: Props) {

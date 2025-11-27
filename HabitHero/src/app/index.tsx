@@ -1,19 +1,17 @@
+// src/app/index.tsx
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Text } from "react-native";
+import MainLayout from "../shared/layouts/MainLayout";
 import MissionsPage from "../features/missions/pages/MissionsPage";
 import RewardPages from "../features/rewards/pages/RewardPages";
-
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<"missions" | "rewards">("missions");
 
   return (
-    <View style={{ flex: 1 }}>
-      {currentPage === "missions" ? (
-        <MissionsPage goToRewards={() => setCurrentPage("rewards")} />
-      ) : (
-        <RewardPages goToMissions={() => setCurrentPage("missions")} />
-      )}
-    </View>
+    <MainLayout>
+      <Text>Contenido</Text>
+    </MainLayout>
   );
 }
+

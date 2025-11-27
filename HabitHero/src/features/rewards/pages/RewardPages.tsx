@@ -50,19 +50,6 @@ export default function RewardsScreen({ goToMissions }: Props) {
         resizeMode="cover"
       >
         <View style={styles.viewImg}>
-          <ImageBackground
-            source={require("../../../assets/backTree.png")}
-            style={styles.bgImage}
-            imageStyle={styles.panelImage}
-          >
-            <View style={styles.top}>
-              <Ionicons name="radio-button-on" size={32} color="white" />
-              <Image
-                source={require("../../../assets/menu.png")}
-                style={styles.Image}
-              />
-              <Ionicons name="radio-button-on" size={32} color="white" />
-            </View>
             <View style={styles.panel}>
               <AvatarCard
                 name="Mariana Lopez"
@@ -97,11 +84,6 @@ export default function RewardsScreen({ goToMissions }: Props) {
                 </TouchableOpacity>
               )}
             </View>
-            <View style={styles.top}>
-              <Ionicons name="radio-button-on" size={32} color="white" />
-              <Ionicons name="radio-button-on" size={32} color="white" />
-            </View>
-          </ImageBackground>
         </View>
       </ImageBackground>
     </View>

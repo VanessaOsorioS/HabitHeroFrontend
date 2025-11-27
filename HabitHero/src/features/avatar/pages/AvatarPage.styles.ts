@@ -177,4 +177,26 @@ export default StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+
+
+  storeItemImage: {
+    width: 100,   // Define el tamaño directamente aquí
+    height: 100,  // Define el tamaño directamente aquí
+  },
+  
+
+  storeItemCentered: {
+  marginRight: 15,
+  alignItems: "center",
+},
+
+storeItemLeft: {
+  marginRight: 15,
+  alignItems: "flex-start",
+},
+
+  
+
+
+
 });

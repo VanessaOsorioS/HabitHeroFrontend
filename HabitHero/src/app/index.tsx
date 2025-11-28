@@ -1,16 +1,16 @@
-// src/app/index.tsx
 import React, { useState } from "react";
-import { Text } from "react-native";
-import MainLayout from "../shared/layouts/MainLayout";
-import MissionsPage from "../features/missions/pages/MissionsPage";
 import RewardPages from "../features/rewards/pages/RewardPages";
+import MainLayout from "../shared/layouts/MainLayout";
+import { MenuOption } from "../shared/menu/MainMenu";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<"missions" | "rewards">("missions");
+  const [currentPage, setCurrentPage] = useState<MenuOption>("rewards");
 
   return (
-    <MainLayout>
-      <Text>Contenido</Text>
+    <MainLayout onSelectMenuOption={setCurrentPage}>
+      <RewardPages/>
+      {/* cuando tengas Avatar */}
+      {/* {currentPage === "avatar" && <AvatarPage />} */}
     </MainLayout>
   );
 }

@@ -1,42 +1,40 @@
-import { Dimensions, StyleSheet } from "react-native";
-const { width, height } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export const RewardPagesStyles = StyleSheet.create({
-  container: { flex: 1 },
-  background: {
-    flex: 1,
-    width: width,
-    height: height,
-    justifyContent: "center",
+  container: {
+    width: "100%",
     alignItems: "center",
   },
-  Image: {
-    width: 40,
-    height: 40,
-  },
-  viewImg: {
-    width: "35%"
-  },
+
   panel: {
-    width: 500,
-    height: 600,
-    alignSelf: "center",
+    width: "80%",             
+    maxWidth: 900,
     backgroundColor: "rgba(255, 235, 172, 1)",
     borderRadius: 16,
     padding: 20,
-    margin: 5,
   },
+
   title: {
     fontSize: 22,
     fontWeight: "bold",
     textAlign: "center",
     color: "#4B2E05",
-    marginBottom: 10,
+    marginTop: 16,
+    marginBottom: 8,
   },
+
+  subtitle: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "#4B2E05",
+    marginBottom: 16,
+  },
+
   row: {
     justifyContent: "space-between",
-    margin: 5,
+    marginVertical: 5,
   },
+
   button: {
     marginTop: 20,
     backgroundColor: "#4B2E05",
@@ -45,6 +43,7 @@ export const RewardPagesStyles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "center",
   },
+
   buttonText: {
     color: "#fff",
     fontWeight: "bold",

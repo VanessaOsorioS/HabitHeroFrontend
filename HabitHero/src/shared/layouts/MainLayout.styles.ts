@@ -3,38 +3,50 @@ const { width, height } = Dimensions.get("window");
 
 export const MainLayoutStyles = StyleSheet.create({
   container: { flex: 1 },
+
   background: {
     flex: 1,
-    width: width,
-    height: height,
+    width,
+    height,
     justifyContent: "center",
     alignItems: "center",
   },
-  bgImage: {
-    width: "100%",
-    height: "100%",
-    alignSelf: "center",
+
+  panelWrapper: {
+    width: "50%",
+    height: "90%",
+  },
+
+  panel: {
+    flex: 1,
     borderRadius: 16,
     overflow: "hidden",
   },
-  Image: {
-    width: 40,
-    height: 40,
-  },
-  top: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-  },
-  viewImg: {
-    width: "35%"
-  },
+
   panelImage: {
     opacity: 0.75,
     borderRadius: 16,
   },
-  row: {
+
+  top: {
+    flexDirection: "row",
     justifyContent: "space-between",
-    margin: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
+
+  content: {
+    flex: 1,
+    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  menuAbsolute: {
+    position: "absolute",
+    top: 40,
+    alignSelf: "center",
+    zIndex: 9999,
+  }
+
 });

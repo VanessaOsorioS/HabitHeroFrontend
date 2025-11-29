@@ -1,7 +1,7 @@
 import { RewardType } from "@/src/types/reward";
 import React, { memo } from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import { RewardCardStyles as styles } from "../styles/RewardCardStyles";
+import { RewardCardStyles as styles } from "./RewardCardStyles";
 import { RewardCardProps } from "../types";
 
 function RewardCard({ reward, onPress, testID }: RewardCardProps) {

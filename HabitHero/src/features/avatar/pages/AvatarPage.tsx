@@ -9,14 +9,10 @@ import {
 } from "react-native";
 import styles from "./AvatarPage.styles";
 
-type Props = {
-  goToMissions: () => void;
-  goToRewards: () => void;
-};
 
-const AvatarPage: React.FC<Props> = ({ goToMissions, goToRewards }) => {
+
+const AvatarPage = () => {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-
   
   const shirts = [
     { id: 1, image: require("../../../assets/shirt1.png"), price: 20 },
@@ -86,26 +82,8 @@ return items.map((item) => (
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../../assets/avatar-bg.jpg")}
-        style={styles.background}
-        resizeMode="cover"
-      >
-        <View style={styles.panelWrapper}>
-          
-          <View style={styles.borderOverlay} pointerEvents="none">
-            <View style={[styles.cornerDot, styles.topLeft]} />
-            <View style={[styles.cornerDot, styles.topRight]} />
-            <View style={[styles.cornerDot, styles.bottomLeft]} />
-            <View style={[styles.cornerDot, styles.bottomRight]} />
-          </View>
+     
 
-          <ImageBackground
-            source={require("../../../assets/wood-bg.jpg")}
-            style={styles.panel}
-            imageStyle={styles.panelImage}
-            resizeMode="cover"
-          >
             <View style={styles.innerPanel}>
               <View style={styles.avatarRow}>
                 <View style={styles.avatarContainer}>
@@ -179,10 +157,8 @@ return items.map((item) => (
                 {renderStoreItems()}
               </ScrollView>
             )}
-          </ImageBackground>
+        
         </View>
-      </ImageBackground>
-    </View>
   );
 };
 

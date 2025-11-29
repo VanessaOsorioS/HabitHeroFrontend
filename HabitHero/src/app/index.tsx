@@ -7,11 +7,15 @@ import RegisterMission from "../features/missionRegistration/pages/RegisterMissi
 export default function App() {
   const [currentPage, setCurrentPage] = useState<MenuOption>("rewards");
 
+  const pages: Record<MenuOption, React.ReactNode> = {
+    rewards: <RewardPages />,
+    missions: <MissionsPage />,
+    avatar: <></>
+  };
+
   return (
     <MainLayout onSelectMenuOption={setCurrentPage}>
-      <RegisterMission/>
-      {/* cuando tengas Avatar */}
-      {/* {currentPage === "avatar" && <AvatarPage />} */}
+      {pages[currentPage]}
     </MainLayout>
   );
 }

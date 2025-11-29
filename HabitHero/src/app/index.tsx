@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import RewardPages from "../features/rewards/pages/RewardPages";
 import MainLayout from "../shared/layouts/MainLayout";
 import { MenuOption } from "../shared/menu/MainMenu";
-import RegisterMission from "../features/missionRegistration/pages/RegisterMission";
 import MissionsPage from "../features/missions/pages/MissionsPage";
 import AvatarPage from "../features/avatar/pages/AvatarPage";
+import LoginPage from "../features/login/pages/LoginPage";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<MenuOption>("rewards");
+  const [currentPage, setCurrentPage] = useState<MenuOption>("missions");
 
   const pages: Record<MenuOption, React.ReactNode> = {
-    rewards: <RewardPages />,
     missions: <MissionsPage />,
-    avatar: <AvatarPage/>
+    rewards: <RewardPages />,
+    avatar: <AvatarPage/>,
   };
 
   return (

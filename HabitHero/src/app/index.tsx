@@ -8,17 +8,30 @@ import LoginPage from "../features/login/pages/LoginPage";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<MenuOption>("missions");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const pages: Record<MenuOption, React.ReactNode> = {
-    missions: <MissionsPage />,
     rewards: <RewardPages />,
-    avatar: <AvatarPage/>,
+    missions: <MissionsPage />,
+    avatar: <AvatarPage />,
   };
 
+  if (!isLoggedIn) {
+    return (
+      <MainLayout showMenu={false}>
+        <LoginPage onLogin={() => setIsLoggedIn(true)} />
+      </MainLayout>
+    );
+  }
+  
   return (
-    <MainLayout onSelectMenuOption={setCurrentPage}>
+    <MainLayout
+      showMenu={true}
+      onSelectMenuOption={setCurrentPage}
+    >
       {pages[currentPage]}
     </MainLayout>
   );
 }
+
 

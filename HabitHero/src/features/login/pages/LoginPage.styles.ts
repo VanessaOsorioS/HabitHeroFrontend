@@ -7,13 +7,25 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
+    width: "80%",
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 40,
   },
 
   title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#5B2A06",
+    opacity: 0.8,
+  },
+  text:{
     fontSize: 28,
     fontWeight: "bold",
-    color: "#5B2A06", // marrón
-    marginBottom: 40,
+    color: "#5B2A06",
+    marginBottom: 10,
+    marginTop: 20,
   },
 
   formRow: {

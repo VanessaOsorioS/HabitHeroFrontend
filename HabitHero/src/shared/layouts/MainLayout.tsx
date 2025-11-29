@@ -7,16 +7,19 @@ import MainMenu, { MenuOption } from "../menu/MainMenu";
 type Props = {
   children: React.ReactNode;
   onSelectMenuOption?: (option: MenuOption) => void;
+  showMenu?: boolean;
 };
 
-export default function MainLayout({ children, onSelectMenuOption }: Props) {
+export default function MainLayout({ children, onSelectMenuOption, showMenu = true,}: Props) {
   return (
     <View style={styles.container}>
 
-      {/* Menú reutilizable */}
-      <View style={styles.menuAbsolute}>
-        <MainMenu onSelectOption={onSelectMenuOption} />
-      </View>
+      {/* Menú*/}
+      {showMenu && (
+        <View style={styles.menuAbsolute}>
+          <MainMenu onSelectOption={onSelectMenuOption} />
+        </View>
+      )}
       <ImageBackground
         source={require("../../assets/forest3.jpg")}
         style={styles.background}
@@ -34,7 +37,7 @@ export default function MainLayout({ children, onSelectMenuOption }: Props) {
               <Ionicons name="radio-button-on" size={40} color="white" />
             </View>
 
-            {/* CONTENIDO FLEXIBLE */}
+            {/* Contenido */}
             <View style={styles.content}>
               {children}
             </View>

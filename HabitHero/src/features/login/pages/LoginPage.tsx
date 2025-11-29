@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { styles } from "./LoginPage.styles";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { PropsLogin } from "../types/Login";
 
-export default function LoginScreen() {
+export default function LoginPage({ onLogin }: PropsLogin) {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <MaterialCommunityIcons name="login" size={50} color="white" />
       <Text style={styles.title}>Login</Text>
+      <Text style={styles.text}>¡La aventura comienza aqui!</Text>
+      </View>
 
       <View style={styles.formRow}>
-        <FontAwesome5 name="leaf" size={20} color="green" />
-        <Text style={styles.label}>Usuario</Text>
+        <Feather name="user" size={24} color="green" />
+        <Text style={styles.label}> Usuario</Text>
         <TextInput
           style={styles.input}
           value={usuario}
@@ -22,8 +27,8 @@ export default function LoginScreen() {
       </View>
 
       <View style={styles.formRow}>
-        <FontAwesome5 name="leaf" size={20} color="green" />
-        <Text style={styles.label}>Contraseña</Text>
+        <MaterialIcons name="password" size={24} color="green" />
+        <Text style={styles.label}> Contraseña</Text>
         <TextInput
           style={styles.input}
           value={contrasena}
@@ -32,7 +37,7 @@ export default function LoginScreen() {
         />
       </View>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={onLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
     </View>

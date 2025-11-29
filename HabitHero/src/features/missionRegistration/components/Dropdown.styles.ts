@@ -24,16 +24,12 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#8a8a8a",
   },
-
-  // Overlay del modal
   backdrop: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.25)",
     justifyContent: "center",
     alignItems: "center",
   },
-
-  // Caja del menú (puedes moverla donde quieras)
   menu: {
     width: 250,
     maxHeight: 250,

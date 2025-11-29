@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image } from "react-native";
-import { styles } from "../styles/ProgressBarStyles";
+import { styles } from "./ProgressBarStyles";
 
 export default function ProgressBar({ progress }: { progress: number }) {
   const pct = Math.min(Math.max(progress, 0), 1);

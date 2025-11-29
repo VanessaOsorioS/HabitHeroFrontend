@@ -13,6 +13,7 @@ import { styles } from "./MissionsPage.styles";
 
 type Props = {
   goToRewards?: () => void;
+  goToAvatar?: () => void;
 };
 
 const MissionsPage: React.FC<Props> = ({ goToRewards }) => {

@@ -9,7 +9,7 @@ export default function App() {
 
   const pages: Record<MenuOption, React.ReactNode> = {
     rewards: <RewardPages />,
-    missions: <MissionsPage />,
+    missions: <RegisterMission />,
     avatar: <></>
   };
 

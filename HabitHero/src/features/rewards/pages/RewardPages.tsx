@@ -17,6 +17,10 @@ type Props = {
 
 export default function RewardsScreen({ goToMissions }: Props) {
   const [rewards, setRewards] = useState<Reward[]>([]);
+  const [xpAndAvances, setXpAndAvances] = useState<{ xp: number; avances: number }>({
+    xp: 0,
+    avances: 0,
+  });
   const [xpAndCoins, setXpAndCoins] = useState<{ xp: number; coins: number }>({
     xp: 0,
     coins: 0,
@@ -30,7 +34,7 @@ export default function RewardsScreen({ goToMissions }: Props) {
         const reward = await getAllRewards();
         const xpAndCoins = await getXpAndCoins();
         setRewards(reward);
-        setXpAndCoins(xpAndCoins);
+        setXpAndAvances(xpAndAvances);
       } catch (error) {
         console.error("Error al cargar recompensas:", error);
       }
@@ -44,10 +48,10 @@ export default function RewardsScreen({ goToMissions }: Props) {
       <View style={styles.panel}>
         <AvatarCard
           name="Mariana Lopez"
-          level="Nivel 1 - Novato"
-          xp={xpAndCoins.xp}
+          level="Nivel 1"
+          xp={xpAndAvances.xp}
           xpMax={maxXp}
-          avatar={require("../../../assets/avatar.png")}
+          avatar={require("../../../assets/first-avatar.png")}
         />
 
         <Text style={styles.title}>Mis recompensas</Text>

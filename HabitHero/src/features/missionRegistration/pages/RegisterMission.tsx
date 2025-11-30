@@ -20,6 +20,7 @@ const missionTypes = [
 const categories = [
   { label: "C1", value: "daily" },
   { label: "C2", value: "weekly" },
+  { label: "C3", value: "week" },
 ];
 
 export default function RegisterMissionScreen() {

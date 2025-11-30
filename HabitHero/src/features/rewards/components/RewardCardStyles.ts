@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
-const CARD_W = 120;
-const CARD_H = 150;
+const CARD_W = 110;
+const CARD_H = 130;
 const RADIUS  = 20;
 
 export const RewardCardStyles = StyleSheet.create({

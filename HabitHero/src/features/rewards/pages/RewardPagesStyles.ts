@@ -7,7 +7,7 @@ export const RewardPagesStyles = StyleSheet.create({
   },
 
   panel: {
-    width: "80%",             
+    width: "80%",            
     maxWidth: 900,
     backgroundColor: "rgba(255, 235, 172, 1)",
     borderRadius: 16,

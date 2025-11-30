@@ -1,18 +1,35 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, Text } from "react-native";
 import { styles } from "./ProgressBarStyles";
+import { ProgressBarProps } from "../types/ProgressBar";
 
-export default function ProgressBar({ progress }: { progress: number }) {
-  const pct = Math.min(Math.max(progress, 0), 1);
+export default function ProgressBar({
+  progress,
+  icon = require("../../../assets/libro.png"),
+  valueText,
+  containerStyle,
+}: ProgressBarProps) {
+
+  const hasProgress = typeof progress === "number";
+  const pct = hasProgress ? Math.min(Math.max(progress!, 0), 1) : 1;
+
   return (
     <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <View style={[styles.fill, { width: `${pct * 100}%` }]} />
+      {icon && (
+        <Image
+          source={icon}
+          style={styles.icon}
+          resizeMode="contain"
+        />
+      )}
+
+      <View style={[styles.container, containerStyle]}>
+        {hasProgress && (
+          <View style={[styles.fill, { width: `${pct * 100}%` }]} />
+        )}
+
+        {valueText && <Text style={styles.valueText}>{valueText}</Text>}
       </View>
-      <Image
-      source={require("../../../assets/libro.png")}
-      style={styles.icon}
-      resizeMode="contain"/>
     </View>
   );
 }

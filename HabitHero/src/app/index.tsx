@@ -5,15 +5,21 @@ import { MenuOption } from "../shared/menu/MainMenu";
 import MissionsPage from "../features/missions/pages/MissionsPage";
 import AvatarPage from "../features/avatar/pages/AvatarPage";
 import LoginPage from "../features/login/pages/LoginPage";
+import RegisterMissionScreen from "../features/missionRegistration/pages/RegisterMission";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<MenuOption>("missions");
+  const [currentPage, setCurrentPage] = useState<MenuOption | "register-mission">("missions");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const pages: Record<MenuOption, React.ReactNode> = {
+  const pages: Record<MenuOption | "register-mission", React.ReactNode> = {
     rewards: <RewardPages />,
-    missions: <MissionsPage />,
+    missions: (
+      <MissionsPage 
+        goToRegisterMission={() => setCurrentPage("register-mission")}
+      />
+    ),
     avatar: <AvatarPage />,
+    "register-mission": <RegisterMissionScreen />,
   };
 
   if (!isLoggedIn) {
@@ -26,12 +32,10 @@ export default function App() {
   
   return (
     <MainLayout
-      showMenu={true}
+      showMenu={currentPage !== "register-mission"}
       onSelectMenuOption={setCurrentPage}
     >
       {pages[currentPage]}
     </MainLayout>
   );
 }
-
-

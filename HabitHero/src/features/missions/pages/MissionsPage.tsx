@@ -12,11 +12,11 @@ import MissionCard from "../components/MissionCard";
 import { styles } from "./MissionsPage.styles";
 
 type Props = {
-  goToRewards?: () => void;
   goToAvatar?: () => void;
+  goToRegisterMission?: () => void;
 };
 
-const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
+const MissionsPage: React.FC<Props> = ({goToRegisterMission }) => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,35 +38,33 @@ const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Mis misiones</Text>
+
+      {loading ? (
+        <Text style={styles.loadingText}>Cargando misiones...</Text>
+      ) : (
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {missions.length === 0 && (
+            <Text style={styles.title}>
+              No tienes misiones pendientes por ahora.
+            </Text>
+          )}
+          {missions.map((mission) => (
+            <MissionCard key={mission.id} mission={mission} />
+          ))}
+        </ScrollView>
+      )}
       
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={goToRegisterMission}>
+          <Text style={styles.buttonText}>Registrar Misión</Text>
+        </TouchableOpacity>
         
-
-          
-            <Text style={styles.title}>Mis misiones</Text>
-
-            {loading ? (
-              <Text style={styles.loadingText}>Cargando misiones...</Text>
-            ) : (
-              <ScrollView
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-              >
-                {missions.length === 0 && (
-                  <Text style={styles.title}>
-                    No tienes misiones pendientes por ahora.
-                  </Text>
-                )}
-                {missions.map((mission) => (
-                  <MissionCard key={mission.id} mission={mission} />
-                ))}
-              </ScrollView>
-            )}
-            <TouchableOpacity style={styles.button} onPress={goToRewards}>
-              <Text style={styles.buttonText}>Ver Recompensas</Text>
-            </TouchableOpacity>
-        </View>
-      
-    
+      </View>
+    </View>
   );
 };
 

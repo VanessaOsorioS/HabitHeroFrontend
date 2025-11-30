@@ -65,19 +65,22 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 50,
   },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 15,
+    marginTop: 20,
+    marginBottom: 40,
+  },
   button: {
-  marginTop: 20,
-  marginBottom:40,
-  backgroundColor: "#f4a261",
-  paddingVertical: 10,
-  paddingHorizontal: 20,
-  borderRadius: 10,
-  alignSelf: "center",
-},
-buttonText: {
-  color: "#fff",
-  fontWeight: "bold",
-  fontSize: 16,
-},
-
+    backgroundColor: "#f4a261",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });

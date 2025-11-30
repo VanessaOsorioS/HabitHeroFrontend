@@ -195,7 +195,18 @@ storeItemLeft: {
   alignItems: "flex-start",
 },
 
-  
+
+priceContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 5,
+},
+coinImage: {
+  width: 20,
+  height: 20,
+},
+
 
 
 

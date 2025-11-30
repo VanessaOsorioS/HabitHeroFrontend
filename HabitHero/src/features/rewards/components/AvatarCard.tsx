@@ -12,12 +12,24 @@ export default function AvatarCard({ name, level, xp, xpMax, avatar }: Props) {
       <Image source={avatar} style={styles.avatar} />
 
       <View style={styles.info}>
-        <Text style={styles.name}>{name}</Text>
-        <ProgressBar progress={progress} />
-        <View style={styles.row}>
-          <Text style={styles.level}>{level}</Text>
-          <Text style={styles.xp}>{`${xp}/${xpMax}`}</Text>
+
+        <View style={styles.namePill}>
+          <Text style={styles.nameText}>{name}</Text>
         </View>
+        <ProgressBar
+          progress={progress}
+          valueText={`${xp}/${xpMax}`}
+        />
+
+        <View style={styles.levelRow}>
+          <Text style={styles.levelLabel}>{level}</Text>
+        </View>
+
+        <ProgressBar
+          icon={require("../../../assets/coin.png")} 
+          valueText="200"
+        />
+
       </View>
     </View>
   );

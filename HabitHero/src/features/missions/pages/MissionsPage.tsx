@@ -13,6 +13,7 @@ import { styles } from "./MissionsPage.styles";
 
 type Props = {
   goToRewards?: () => void;
+  goToAvatar?: () => void;
 };
 
 const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
@@ -37,25 +38,10 @@ const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../../assets/missions-bg.jpg")}
-        style={styles.background}
-        resizeMode="cover"
-      >
-        <View style={styles.panelWrapper}>
-          <View style={styles.borderOverlay} pointerEvents="none">
-            <View style={[styles.cornerDot, styles.topLeft]} />
-            <View style={[styles.cornerDot, styles.topRight]} />
-            <View style={[styles.cornerDot, styles.bottomLeft]} />
-            <View style={[styles.cornerDot, styles.bottomRight]} />
-          </View>
+      
+        
 
-          <ImageBackground
-            source={require("../../../assets/wood-bg.jpg")}
-            style={styles.panel}
-            imageStyle={styles.panelImage}
-            resizeMode="cover"
-          >
+          
             <Text style={styles.title}>Mis misiones</Text>
 
             {loading ? (
@@ -78,10 +64,9 @@ const MissionsPage: React.FC<Props> = ({ goToRewards }) => {
             <TouchableOpacity style={styles.button} onPress={goToRewards}>
               <Text style={styles.buttonText}>Ver Recompensas</Text>
             </TouchableOpacity>
-          </ImageBackground>
         </View>
-      </ImageBackground>
-    </View>
+      
+    
   );
 };
 

@@ -10,7 +10,7 @@ function RewardCard({ reward, onPress, testID }: RewardCardProps) {
   const bookSource = require("../../../assets/libro.png");
 
   return (
-    <Pressable // componente que me permite detectar presiones, hace que la tarjeta sea interactiva y cambie de estilo cuando se presiona
+    <Pressable
       onPress={() => onPress?.(reward)}
     style={({ pressed }) => [
     styles.card,

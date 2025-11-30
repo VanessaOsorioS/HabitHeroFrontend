@@ -124,11 +124,13 @@ export default StyleSheet.create({
     resizeMode: "cover",
   },
 
+  
   slotOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.35)", 
-    borderRadius: 14,
-  },
+  backgroundColor: "rgba(0, 0, 0, 0.2)", // Ajusta la opacidad si es necesario
+  width: "100%",
+  height: "100%",
+},
+
 
   storeScroll: {
     marginTop: 20,
@@ -208,6 +210,12 @@ coinImage: {
 },
 
 
+slotPreviewImage: {
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  opacity: 0.7, // Ajusta este valor para más o menos transparencia
+},
 
 
 });

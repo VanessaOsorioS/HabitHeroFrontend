@@ -106,20 +106,30 @@ const AvatarPage = () => {
                   style={styles.slotBox}
                   imageStyle={styles.slotImage}
                 >
+                   <Image
+      source={require("../../../assets/shirt6.png")}
+      style={styles.slotPreviewImage}
+      resizeMode="contain"
+    />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>
 
-              {/* Slot superior derecho - Sombreros */}
-              <TouchableOpacity onPress={() => handleSlotPress("hat")}>
-                <ImageBackground
-                  source={require("../../../assets/leaf-bg.jpg")}
-                  style={styles.slotBox}
-                  imageStyle={styles.slotImage}
-                >
-                  <View style={styles.slotOverlay} />
-                </ImageBackground>
-              </TouchableOpacity>
+   {/* Slot superior derecho - Sombreros */}
+<TouchableOpacity onPress={() => handleSlotPress("hat")}>
+  <ImageBackground
+    source={require("../../../assets/leaf-bg.jpg")}
+    style={styles.slotBox}
+    imageStyle={styles.slotImage}
+  >
+    <Image
+      source={require("../../../assets/hat3.png")}
+      style={styles.slotPreviewImage}
+      resizeMode="contain"
+    />
+    <View style={styles.slotOverlay} />
+  </ImageBackground>
+</TouchableOpacity>
             </View>
 
             <View style={styles.rowSlots}>
@@ -130,6 +140,11 @@ const AvatarPage = () => {
                   style={styles.slotBox}
                   imageStyle={styles.slotImage}
                 >
+                  <Image
+      source={require("../../../assets/pants2.png")}
+      style={styles.slotPreviewImage}
+      resizeMode="contain"
+    />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>
@@ -141,6 +156,11 @@ const AvatarPage = () => {
                   style={styles.slotBox}
                   imageStyle={styles.slotImage}
                 >
+                   <Image
+      source={require("../../../assets/shoes2.png")}
+      style={styles.slotPreviewImage}
+      resizeMode="contain"
+    />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>

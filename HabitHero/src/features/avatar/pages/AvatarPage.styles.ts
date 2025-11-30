@@ -126,7 +126,7 @@ export default StyleSheet.create({
 
   
   slotOverlay: {
-  backgroundColor: "rgba(0, 0, 0, 0.2)", // Ajusta la opacidad si es necesario
+  backgroundColor: "rgba(0, 0, 0, 0.2)", 
   width: "100%",
   height: "100%",
 },
@@ -182,8 +182,8 @@ export default StyleSheet.create({
 
 
   storeItemImage: {
-    width: 100,   // Define el tamaño directamente aquí
-    height: 100,  // Define el tamaño directamente aquí
+    width: 100,   
+    height: 100,  
   },
   
 
@@ -214,7 +214,11 @@ slotPreviewImage: {
   width: "100%",
   height: "100%",
   position: "absolute",
-  opacity: 0.7, // Ajusta este valor para más o menos transparencia
+  opacity: 0.5, 
+},
+
+slotPreviewImageSelected: {
+  opacity: 1, 
 },
 
 

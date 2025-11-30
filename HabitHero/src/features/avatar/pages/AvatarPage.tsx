@@ -9,10 +9,20 @@ import {
 } from "react-native";
 import styles from "./AvatarPage.styles";
 
-
-
 const AvatarPage = () => {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [equippedItems, setEquippedItems] = useState({
+    shirt: require("../../../assets/shirt6.png"),
+    hat: require("../../../assets/hat3.png"),
+    pants: require("../../../assets/pants2.png"),
+    shoes: require("../../../assets/shoes2.png"),
+  });
+  const [isItemSelected, setIsItemSelected] = useState({
+    shirt: false,
+    hat: false,
+    pants: false,
+    shoes: false,
+  });
   
   const shirts = [
     { id: 1, image: require("../../../assets/shirt1.png"), price: 20 },
@@ -22,20 +32,17 @@ const AvatarPage = () => {
     { id: 5, image: require("../../../assets/shirt5.png"), price: 20 },
   ];
 
-
   const hats = [
     { id: 1, image: require("../../../assets/hat1.png"), price: 50 },
     { id: 2, image: require("../../../assets/hat2.png"), price: 40 },
   ];
 
-  
   const pants = [
     { id: 1, image: require("../../../assets/pants.png"), price: 10 },
     { id: 2, image: require("../../../assets/pants3.png"), price: 15 },
     { id: 3, image: require("../../../assets/skirt.png"), price: 35 },
   ];
 
-  
   const shoes = [
     { id: 1, image: require("../../../assets/shoes.png"), price: 20 },
   ];
@@ -44,7 +51,19 @@ const AvatarPage = () => {
     setSelectedSlot(slotName);
   };
 
-  
+  const handleItemSelect = (itemImage: any) => {
+    if (selectedSlot) {
+      setEquippedItems({
+        ...equippedItems,
+        [selectedSlot]: itemImage,
+      });
+      setIsItemSelected({
+        ...isItemSelected,
+        [selectedSlot]: true,
+      });
+    }
+  };
+
   const renderStoreItems = () => {
     let items: any[] = [];
 
@@ -66,7 +85,11 @@ const AvatarPage = () => {
     }
 
     return items.map((item) => (
-      <View key={item.id} style={styles.storeItem}>
+      <TouchableOpacity 
+        key={item.id} 
+        style={styles.storeItem}
+        onPress={() => handleItemSelect(item.image)}
+      >
         <Image
           source={item.image}
           style={styles.storeItemImage}
@@ -80,7 +103,7 @@ const AvatarPage = () => {
             resizeMode="contain"
           />
         </View>
-      </View>
+      </TouchableOpacity>
     ));
   };
 
@@ -106,30 +129,36 @@ const AvatarPage = () => {
                   style={styles.slotBox}
                   imageStyle={styles.slotImage}
                 >
-                   <Image
-      source={require("../../../assets/shirt6.png")}
-      style={styles.slotPreviewImage}
-      resizeMode="contain"
-    />
+                  <Image
+                    source={equippedItems.shirt}
+                    style={[
+                      styles.slotPreviewImage,
+                      isItemSelected.shirt && styles.slotPreviewImageSelected
+                    ]}
+                    resizeMode="contain"
+                  />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>
 
-   {/* Slot superior derecho - Sombreros */}
-<TouchableOpacity onPress={() => handleSlotPress("hat")}>
-  <ImageBackground
-    source={require("../../../assets/leaf-bg.jpg")}
-    style={styles.slotBox}
-    imageStyle={styles.slotImage}
-  >
-    <Image
-      source={require("../../../assets/hat3.png")}
-      style={styles.slotPreviewImage}
-      resizeMode="contain"
-    />
-    <View style={styles.slotOverlay} />
-  </ImageBackground>
-</TouchableOpacity>
+              {/* Slot superior derecho - Sombreros */}
+              <TouchableOpacity onPress={() => handleSlotPress("hat")}>
+                <ImageBackground
+                  source={require("../../../assets/leaf-bg.jpg")}
+                  style={styles.slotBox}
+                  imageStyle={styles.slotImage}
+                >
+                  <Image
+                    source={equippedItems.hat}
+                    style={[
+                      styles.slotPreviewImage,
+                      isItemSelected.hat && styles.slotPreviewImageSelected
+                    ]}
+                    resizeMode="contain"
+                  />
+                  <View style={styles.slotOverlay} />
+                </ImageBackground>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.rowSlots}>
@@ -141,10 +170,13 @@ const AvatarPage = () => {
                   imageStyle={styles.slotImage}
                 >
                   <Image
-      source={require("../../../assets/pants2.png")}
-      style={styles.slotPreviewImage}
-      resizeMode="contain"
-    />
+                    source={equippedItems.pants}
+                    style={[
+                      styles.slotPreviewImage,
+                      isItemSelected.pants && styles.slotPreviewImageSelected
+                    ]}
+                    resizeMode="contain"
+                  />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>
@@ -156,11 +188,14 @@ const AvatarPage = () => {
                   style={styles.slotBox}
                   imageStyle={styles.slotImage}
                 >
-                   <Image
-      source={require("../../../assets/shoes2.png")}
-      style={styles.slotPreviewImage}
-      resizeMode="contain"
-    />
+                  <Image
+                    source={equippedItems.shoes}
+                    style={[
+                      styles.slotPreviewImage,
+                      isItemSelected.shoes && styles.slotPreviewImageSelected
+                    ]}
+                    resizeMode="contain"
+                  />
                   <View style={styles.slotOverlay} />
                 </ImageBackground>
               </TouchableOpacity>

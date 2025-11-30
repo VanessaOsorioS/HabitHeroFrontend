@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  overlay: {
+    flex: 1,
+  },
   inputText: {
     fontSize: 14,
     color: "#333333",
@@ -24,34 +27,31 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#8a8a8a",
   },
-
-  // Overlay del modal
   backdrop: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.25)",
     justifyContent: "center",
     alignItems: "center",
   },
-
-  // Caja del menú (puedes moverla donde quieras)
   menu: {
-    width: 250,
+    position: "absolute",
+    backgroundColor: "#fff",
+    borderRadius: 10,
     maxHeight: 250,
-    backgroundColor: "#ffffff",
-    borderRadius: 12,
-    paddingVertical: 8,
+    paddingVertical: 6,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 6,
   },
   option: {
     paddingVertical: 10,
     paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
   },
   optionText: {
     fontSize: 14,
-    color: "#333333",
+    color: "#333",
   },
 });

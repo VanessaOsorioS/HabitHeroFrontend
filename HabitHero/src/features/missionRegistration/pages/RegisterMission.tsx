@@ -11,8 +11,23 @@ import { styles } from "./RegisterMission.styles";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import Dropdown from "../components/Dropdown";
 
-const [type, setType] = useState("");
+const missionTypes = [
+  { label: "Diaria", value: "daily" },
+  { label: "Semanal", value: "weekly" },
+  { label: "Única", value: "unique" },
+];
+
+const categories = [
+  { label: "C1", value: "daily" },
+  { label: "C2", value: "weekly" },
+  { label: "C3", value: "week" },
+];
+
 export default function RegisterMissionScreen() {
+
+    const [type, setType] = useState<string | null>(null);
+    const [category, setCategory] = useState<string | null>(null);
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.treasureContainer}>
@@ -92,23 +107,28 @@ export default function RegisterMissionScreen() {
                         <TextInput style={styles.input} />
                     </View>
 
-                    {/* Categoría (simulación de select) */}
+                    {/* Categoría*/}
                     <View style={styles.formRow}>
                         <FontAwesome5 name="leaf" size={20} color="green" />
                         <Text style={styles.label}>Categoría.</Text>
-                        <TouchableOpacity style={styles.selectInput}>
-                            <Text style={styles.selectPlaceholder}>
-                                Seleccione una opción
-                            </Text>
-                            <Text style={styles.selectArrow}>›</Text>
-                        </TouchableOpacity>
+                        <Dropdown
+                            options={categories}
+                            value={category}
+                            onChange={setCategory}
+                            placeholder="Seleccione una categoría"
+                        />
                     </View>
 
-                    {/* Tipo de misión (simulación de select) */}
+                    {/* Tipo de misión*/}
                     <View style={styles.formRow}>
                         <FontAwesome5 name="leaf" size={20} color="green" />
                         <Text style={styles.label}>Tipo de misión.</Text>
-                        <Dropdown />
+                        <Dropdown
+                            options={missionTypes}
+                            value={type}
+                            onChange={setType}
+                            placeholder="Seleccione un tipo"
+                        />
                     </View>
 
                     {/* Botón Registrar */}

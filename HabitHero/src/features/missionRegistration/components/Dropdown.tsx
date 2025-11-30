@@ -1,68 +1,100 @@
-import React, { useState} from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet, 
   Modal,
   TouchableWithoutFeedback
 } from "react-native";
 import { styles } from "./Dropdown.styles";
+import {DropdownOption, DropdownProps} from "../types/Dropdown";
 
-const options = ['Opción 1', 'Opción 2', 'Opción 3'];
 
-export default function Dropdown() {
+export default function Dropdown({
+  options,
+  value,
+  onChange,
+  placeholder = "Seleccione una opción",
+}: DropdownProps) {
   const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [menuPosition, setMenuPosition] = useState({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
 
-    const open = () => setVisible(true);
+  const inputRef = useRef<View | null>(null);
+
+  const open = () => {
+    if (inputRef.current) {
+      inputRef.current.measureInWindow((x, y, width, height) => {
+        setMenuPosition({
+          top: y + height + 4,
+          left: x,
+          width: width,
+        });
+        setVisible(true);
+      });
+    }else {
+      setVisible(true);
+    }
+  };
+
   const close = () => setVisible(false);
 
   const handleSelect = (option: string) => {
-    setSelected(option);
+    onChange(option);
     close();
   };
-
+  
+  const selectedOption: DropdownOption | undefined = options.find(
+    (opt) => opt.value === value
+  );
   return (
     <>
-      {/* Campo que se ve en el formulario */}
-      <TouchableOpacity style={styles.input} onPress={open} activeOpacity={0.8}>
+      {/* Campo */}
+      <TouchableOpacity
+        ref={inputRef}
+        style={styles.input}
+        onPress={open}
+        activeOpacity={0.8}
+      >
         <Text
           style={[
             styles.inputText,
-            !selected && styles.placeholderText,
+            !selectedOption && styles.placeholderText,
           ]}
           numberOfLines={1}
         >
-          {selected ?? "Seleccione una opción"}
+          {selectedOption ? selectedOption.label : placeholder}
         </Text>
         <Text style={styles.arrow}>▾</Text>
       </TouchableOpacity>
 
-      {/* Modal flotante encima de todo */}
-      <Modal
-        visible={visible}
-        transparent
-        animationType="fade"
-        onRequestClose={close}
-      >
-        {/* Fondo oscuro clickeable para cerrar */}
+      {/* Modal flotante */}
+      <Modal visible={visible} transparent animationType="none">
         <TouchableWithoutFeedback onPress={close}>
-          <View style={styles.backdrop}>
-            {/* Contenedor del menú (no se cierra al tocar dentro) */}
-            <TouchableWithoutFeedback>
-              <View style={styles.menu}>
-                {options.map((opt) => (
-                  <TouchableOpacity
-                    key={opt}
-                    style={styles.option}
-                    onPress={() => handleSelect(opt)}
-                  >
-                    <Text style={styles.optionText}>{opt}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            </TouchableWithoutFeedback>
+          <View style={styles.overlay}>
+            <View
+              style={[
+                styles.menu,
+                {
+                  top: menuPosition.top,
+                  left: menuPosition.left,
+                  width: menuPosition.width,
+                },
+              ]}
+            >
+              {options.map((opt) => (
+                <TouchableOpacity
+                  key={opt.value}
+                  style={styles.option}
+                  onPress={() => handleSelect(opt.value)}
+                >
+                  <Text style={styles.optionText}>{opt.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </Modal>

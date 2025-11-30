@@ -5,8 +5,6 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 24,
   },
-
-  /* Panel del cofre */
   treasureContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -15,8 +13,6 @@ export const styles = StyleSheet.create({
     width: 500,
     height: 500,
   },
-
-  /* Card del formulario */
   cardContainer: {
     width: 450,
     backgroundColor: "#FFE8B7",
@@ -38,8 +34,6 @@ export const styles = StyleSheet.create({
   formContent: {
     paddingBottom: 12,
   },
-
-  /* Filas del formulario */
   formRow: {
     flexDirection: "row",
     alignItems: "center",

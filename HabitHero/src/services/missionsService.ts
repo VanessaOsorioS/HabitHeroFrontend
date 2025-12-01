@@ -1,24 +1,39 @@
-import { Mission } from "../types/mission";
+import {
+  Mission,
+  GetMissionsResponse,
+  GetPendingMissionsResponse,
+  CreateMissionRequest,
+  CreateMissionResponse,
+  CompleteMissionResponse,
+} from "../types/mission";
+
 import { httpClient } from "./httpClient";
 
-export const getMissions = async () => {
-  const response = await httpClient.get<{ data: Mission[] }>('mission');
-  return response.data.data;
-};
+export const missionService = {
+  getMissions: async () => {
+    const response = await httpClient.get<GetMissionsResponse>("mission");
+    return response.data.data;
+  },
 
-export const getPendingMissions = async () => {
-  const response = await httpClient.get<{ data: Mission[] }>('mission/pending');
-  return response.data.data;
-};
+  getPendingMissions: async () => {
+    const response = await httpClient.get<GetPendingMissionsResponse>(
+      "mission/pending"
+    );
+    return response.data.data;
+  },
 
-export const createMission = async (mission: any) => {
-  const response = await httpClient.post<{ data: Mission }>('mission', mission);
-  return response.data.data;
-};
+  createMission: async (data: CreateMissionRequest) => {
+    const response = await httpClient.post<CreateMissionResponse>(
+      "mission",
+      data
+    );
+    return response.data.data;
+  },
 
-export const completeMission = async (missionId: number) => {
-  const response = await httpClient.post<{ xp: number; coins: number }>(
-    `mission/complete/${missionId}`
-  );
-  return response.data; // XP y Coins
+  completeMission: async (missionId: number) => {
+    const response = await httpClient.post<CompleteMissionResponse>(
+      `mission/complete/${missionId}`
+    );
+    return response.data; // { xp, coins }
+  },
 };

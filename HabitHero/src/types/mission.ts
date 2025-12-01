@@ -3,16 +3,24 @@ export interface Mission {
   title: string;
   description?: string;
   type: MissionType;
-  dueDate?: string;         
+  dueDate?: string;
   durationMinutes?: number;
   category?: string;
   priority: number;
   difficulty: number;
   daily: boolean;
   reminderEnabled: boolean;
-  status: MissionStatus;
   creationDate: string;
+  userId: number;
+
+  statusHistories: {
+    id: number;
+    missionId: number;
+    status: "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED";
+    date: string;
+  }[];
 }
+
 
 export enum MissionType {
   STUDY = "STUDY",

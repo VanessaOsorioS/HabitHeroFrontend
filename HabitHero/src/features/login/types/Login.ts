@@ -1,3 +1,5 @@
+import { User } from "@/src/types/auth";
+
 export type PropsLogin = {
-  onLogin: () => void;
+  onLogin: (token: string, user: User) => void;
 };

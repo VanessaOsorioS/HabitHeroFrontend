@@ -3,5 +3,6 @@ export interface avatarCardProps {
   level: string;
   xp: number;
   xpMax: number;
+  coin: number;
   avatar: any;
 }

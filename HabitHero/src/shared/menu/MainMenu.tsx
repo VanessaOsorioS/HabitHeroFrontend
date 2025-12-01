@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { MainMenuStyles as styles } from "./MainMenu.styles"
+import React, { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import { MainMenuStyles as styles } from "./MainMenu.styles";
 
-export type MenuOption = "rewards" | "missions" | "avatar";
+export type MenuOption = "rewards" | "missions" | "avatar" | "register_mission" | "login";
 
 type Props = {
   onSelectOption?: (option: MenuOption) => void;
+  onLogout?: () => void
 };
 
-export default function MainMenu({ onSelectOption }: Props) {
+export default function MainMenu({ onSelectOption, onLogout }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (option: MenuOption) => {
@@ -75,6 +76,22 @@ export default function MainMenu({ onSelectOption }: Props) {
               style={styles.menuIcon}
             />
             <Text style={styles.menuText}>Avatar</Text>
+          </TouchableOpacity>
+
+          
+          <View style={styles.menuDivider} />
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={onLogout}
+          >
+            <MaterialCommunityIcons
+              name="logout"
+              size={20}
+              color="#4B2E05"
+              style={styles.menuIcon}
+            />
+            <Text style={styles.menuText}>Cerrar sesión</Text>
           </TouchableOpacity>
         </View>
       )}

@@ -13,7 +13,7 @@ export interface Mission {
   creationDate: string;
   userId: number;
 
-  statusHistories: MissionStatusHistory[];
+  statusHistories?: MissionStatusHistory[];
 }
 
 export interface MissionStatusHistory {
@@ -52,7 +52,7 @@ export interface CreateMissionRequest {
   difficulty: number;
   daily: boolean;
   reminderEnabled: boolean;
-  userId: number;
+  userId?: number;
 }
 
 export interface CreateMissionResponse {

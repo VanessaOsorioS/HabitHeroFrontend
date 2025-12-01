@@ -1,12 +1,34 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-import { styles } from "./LoginPage.styles";
+import { login } from "@/src/services/auth.service";
+import { LoginRequest } from "@/src/types/auth";
 import { Feather, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { PropsLogin } from "../types/Login";
+import { styles } from "./LoginPage.styles";
 
 export default function LoginPage({ onLogin }: PropsLogin) {
-  const [usuario, setUsuario] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");  
+  const [error, setError] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      setError("");
+      const request = {
+        email: email,
+        password: password
+      } as LoginRequest;
+
+      const result = await login(request);
+      console.log("Login result:", result);
+
+      onLogin(result.token, result.user);
+
+    } catch (err: any) {
+      console.error("Login error:", err);
+      setError("Credenciales inválidas");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -21,8 +43,8 @@ export default function LoginPage({ onLogin }: PropsLogin) {
         <Text style={styles.label}> Usuario</Text>
         <TextInput
           style={styles.input}
-          value={usuario}
-          onChangeText={setUsuario}
+          value={email}
+          onChangeText={setEmail}
         />
       </View>
 
@@ -31,13 +53,14 @@ export default function LoginPage({ onLogin }: PropsLogin) {
         <Text style={styles.label}> Contraseña</Text>
         <TextInput
           style={styles.input}
-          value={contrasena}
-          onChangeText={setContrasena}
+          value={password}
+          onChangeText={setPassword}
           secureTextEntry
         />
       </View>
+      {error !== "" && <Text style={{ color: "red" }}>{error}</Text>}
 
-      <TouchableOpacity style={styles.button} onPress={onLogin}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
     </View>

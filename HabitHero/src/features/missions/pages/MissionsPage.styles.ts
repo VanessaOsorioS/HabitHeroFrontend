@@ -83,4 +83,70 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  rewardsBox: {
+    width: 280,
+    backgroundColor: "#FFEBB7",
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    borderRadius: 18,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8,
+  },
+
+  rewardsTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "#5B3A09",
+    textAlign: "center",
+  },
+
+  rewardsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+    gap: 10,
+  },
+
+  rewardIcon: {
+    width: 50,
+    height: 50,
+    resizeMode: "contain",
+  },
+
+  rewardText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#6B4B1F",
+  },
+  successOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+
+  successButton: {
+    backgroundColor: "#0099cc",
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 12,
+    marginTop: 15,
+  },
+
+  successButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
 });

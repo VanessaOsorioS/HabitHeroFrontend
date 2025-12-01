@@ -13,3 +13,9 @@ export interface LoginResponse {
     email: string;
   };
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}

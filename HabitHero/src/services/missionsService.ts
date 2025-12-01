@@ -1,10 +1,9 @@
 import {
-  Mission,
-  GetMissionsResponse,
-  GetPendingMissionsResponse,
+  CompleteMissionResponse,
   CreateMissionRequest,
   CreateMissionResponse,
-  CompleteMissionResponse,
+  GetMissionsResponse,
+  GetPendingMissionsResponse
 } from "../types/mission";
 
 import { httpClient } from "./httpClient";
@@ -27,7 +26,7 @@ export const missionService = {
       "mission",
       data
     );
-    return response.data.data;
+    return response;
   },
 
   completeMission: async (missionId: number) => {

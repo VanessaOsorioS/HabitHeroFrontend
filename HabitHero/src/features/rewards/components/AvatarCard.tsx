@@ -27,8 +27,9 @@ export default function AvatarCard({ name, level, xp, xpMax, coin,  avatar }: Pr
 
         <ProgressBar
           icon={require("../../../assets/coin.png")}
-          progress={coin / 1000}
-          valueText={`${coin}/${1000}`}
+          progress={coin / coin}
+          valueText={`${coin}`}
+          styleFill={styles.fill}
         />
 
       </View>

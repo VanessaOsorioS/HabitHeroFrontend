@@ -4,11 +4,11 @@ export const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 10,
+    margin: 5,
   },
   container: {
     flex: 1,
-    height: 10,
+    height: 20,
     backgroundColor: "rgba(248, 212, 131, 1)",
     borderRadius: 10,
     overflow: "hidden",
@@ -23,5 +23,12 @@ export const styles = StyleSheet.create({
     width: 32,
     height: 32,
     zIndex: 5, 
-  }
+  },
+  
+  valueText: {
+    position: "absolute",
+    right: 12,
+    fontWeight: "600",
+    zIndex: 10, 
+  },
 });

@@ -1,22 +1,26 @@
-import React from "react";
-import { View, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { MainLayoutStyles as styles } from "./MainLayout.styles";
+import React from "react";
+import { ImageBackground, View } from "react-native";
 import MainMenu, { MenuOption } from "../menu/MainMenu";
+import { MainLayoutStyles as styles } from "./MainLayout.styles";
 
 type Props = {
   children: React.ReactNode;
   onSelectMenuOption?: (option: MenuOption) => void;
+  onLogout?: () => void;
+  showMenu?: boolean;
 };
 
-export default function MainLayout({ children, onSelectMenuOption }: Props) {
+export default function MainLayout({ children, onSelectMenuOption, onLogout, showMenu = true,}: Props) {
   return (
     <View style={styles.container}>
 
-      {/* Menú reutilizable */}
-      <View style={styles.menuAbsolute}>
-        <MainMenu onSelectOption={onSelectMenuOption} />
-      </View>
+      {/* Menú*/}
+      {showMenu && (
+        <View style={styles.menuAbsolute}>
+          <MainMenu onSelectOption={onSelectMenuOption} onLogout={onLogout} />
+        </View>
+      )}
       <ImageBackground
         source={require("../../assets/forest3.jpg")}
         style={styles.background}
@@ -34,7 +38,7 @@ export default function MainLayout({ children, onSelectMenuOption }: Props) {
               <Ionicons name="radio-button-on" size={40} color="white" />
             </View>
 
-            {/* CONTENIDO FLEXIBLE */}
+            {/* Contenido */}
             <View style={styles.content}>
               {children}
             </View>

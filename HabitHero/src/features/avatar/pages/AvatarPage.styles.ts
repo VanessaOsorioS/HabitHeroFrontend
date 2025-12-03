@@ -124,11 +124,13 @@ export default StyleSheet.create({
     resizeMode: "cover",
   },
 
+  
   slotOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.35)", 
-    borderRadius: 14,
-  },
+  backgroundColor: "rgba(0, 0, 0, 0.2)", 
+  width: "100%",
+  height: "100%",
+},
+
 
   storeScroll: {
     marginTop: 20,
@@ -180,8 +182,8 @@ export default StyleSheet.create({
 
 
   storeItemImage: {
-    width: 100,   // Define el tamaño directamente aquí
-    height: 100,  // Define el tamaño directamente aquí
+    width: 100,   
+    height: 100,  
   },
   
 
@@ -195,8 +197,29 @@ storeItemLeft: {
   alignItems: "flex-start",
 },
 
-  
 
+priceContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 5,
+},
+coinImage: {
+  width: 20,
+  height: 20,
+},
+
+
+slotPreviewImage: {
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  opacity: 0.5, 
+},
+
+slotPreviewImageSelected: {
+  opacity: 1, 
+},
 
 
 });

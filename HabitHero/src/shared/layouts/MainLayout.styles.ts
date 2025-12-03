@@ -14,7 +14,7 @@ export const MainLayoutStyles = StyleSheet.create({
 
   panelWrapper: {
     width: "auto",
-    height: "90%",
+    height: "95%",
     minWidth: "50%",
   },
 
@@ -45,7 +45,7 @@ export const MainLayoutStyles = StyleSheet.create({
 
   menuAbsolute: {
     position: "absolute",
-    top: 90,
+    top: 20,
     alignSelf: "center",
     zIndex: 9999,
   }

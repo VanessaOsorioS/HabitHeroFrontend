@@ -12,11 +12,12 @@ import { styles } from "./MissionCard.styles";
 
 type Props = {
   mission: Mission;
+  onComplete?: (missionId: number) => void;
 };
 
-const MissionCard: React.FC<Props> = ({ mission }) => {
+const MissionCard: React.FC<Props> = ({ mission, onComplete }) => {
   const [expanded, setExpanded] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(mission.status === "COMPLETED");
+  const [isCompleted, setIsCompleted] = useState(false);
   const animation = useRef(new Animated.Value(0)).current;
   
   useEffect(() => {
@@ -27,7 +28,6 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
       useNativeDriver: false,
     }).start();
   }, [expanded]);
-
 
   const heightInterpolate = animation.interpolate({
     inputRange: [0, 1],
@@ -41,7 +41,8 @@ const MissionCard: React.FC<Props> = ({ mission }) => {
 
   const toggleCheckbox = () => {
     console.log("Checkbox toggled:", !isCompleted);
-    setIsCompleted(!isCompleted);    
+    setIsCompleted(!isCompleted);
+    onComplete?.(mission.id);
   };
 
   return (

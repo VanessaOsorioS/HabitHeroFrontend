@@ -1,39 +1,56 @@
-import {StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    borderRadius: 20,
-    padding: 15,
-    alignItems: "center",
-    marginBottom: 15,
+    padding: 16,
+    borderRadius: 12,
   },
+
   avatar: {
-    width: 100,
-    height: 130,
-    borderRadius: 10,
-    marginRight: 15,
+    width: 110,
+    height: 160,
+    borderRadius: 12,
+    marginRight: 16,
   },
+
   info: {
     flex: 1,
   },
-  name: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#4B2E05",
-    marginBottom: 6,
-    textAlign: "center",
+
+  /* --- Nombre en pastilla naranja --- */
+  namePill: {
+    backgroundColor: "#FFA726",
+    paddingVertical: 6,
+    borderRadius: 12,
+    marginBottom: 12,
   },
-  row: {
+  nameText: {
+    textAlign: "center",
+    color: "#000",
+    fontWeight: "600",
+    fontSize: 16,
+  },
+
+  /* --- Fila nivel + xp --- */
+  levelRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 4,
+    marginBottom: 12,
   },
-  level: {
-    fontSize: 12,
-    color: "#4B2E05",
+  levelLabel: {
+    fontSize: 14,
+    fontWeight: "600",
   },
-  xp: {
-    fontSize: 12,
-    color: "#4B2E05",
+  xpText: {
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  
+  fill: {
+    height: "100%",
+    backgroundColor: "#facd58",
+    textAlign: "center",
   },
 });

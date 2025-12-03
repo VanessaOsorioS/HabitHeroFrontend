@@ -2,16 +2,23 @@ import { StyleSheet } from "react-native";
 
 export const RewardPagesStyles = StyleSheet.create({
   container: {
+    flex: 1,
     width: "100%",
     alignItems: "center",
   },
 
   panel: {
-    width: "80%",             
+    flex: 1,
+    width: "80%",
     maxWidth: 900,
     backgroundColor: "rgba(255, 235, 172, 1)",
     borderRadius: 16,
     padding: 20,
+  },
+
+  list: {
+    flex: 1,
+    marginTop: 8,
   },
 
   title: {

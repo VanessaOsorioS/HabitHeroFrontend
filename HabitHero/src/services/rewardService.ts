@@ -1,3 +1,4 @@
+import { CompleteMissionResponse } from "../types/mission";
 import { Reward } from "../types/reward";
 import { httpClient } from "./httpClient";
 
@@ -7,6 +8,6 @@ export const getAllRewards = async () => {
 }
 
 export const getXpAndCoins = async () => {
-    const response = await httpClient.get<{ xp: number; coins: number }>('reward/coin-xp');
+    const response = await httpClient.get<CompleteMissionResponse>('reward/coin-xp');
     return response?.data;
 }

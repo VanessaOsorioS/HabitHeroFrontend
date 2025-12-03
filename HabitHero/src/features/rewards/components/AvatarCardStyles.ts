@@ -47,4 +47,10 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
+  
+  fill: {
+    height: "100%",
+    backgroundColor: "#facd58",
+    textAlign: "center",
+  },
 });

@@ -8,6 +8,7 @@ export default function ProgressBar({
   icon = require("../../../assets/libro.png"),
   valueText,
   containerStyle,
+  styleFill,
 }: ProgressBarProps) {
 
   const hasProgress = typeof progress === "number";
@@ -25,7 +26,7 @@ export default function ProgressBar({
 
       <View style={[styles.container, containerStyle]}>
         {hasProgress && (
-          <View style={[styles.fill, { width: `${pct * 100}%` }]} />
+          <View style={[styleFill? styleFill : styles.fill, { width: `${pct * 100}%` }]} />
         )}
 
         {valueText && <Text style={styles.valueText}>{valueText}</Text>}

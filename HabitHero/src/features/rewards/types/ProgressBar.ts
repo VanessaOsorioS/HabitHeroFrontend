@@ -5,4 +5,5 @@ export type ProgressBarProps = {
   icon?: ImageSourcePropType;
   valueText?: string;
   containerStyle?: StyleProp<ViewStyle>;
+  styleFill?: StyleProp<ViewStyle>;
 };

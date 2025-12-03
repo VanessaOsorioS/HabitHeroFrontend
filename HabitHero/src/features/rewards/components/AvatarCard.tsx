@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, Image} from "react-native";
+import { Image, Text, View } from "react-native";
+import { avatarCardProps as Props } from "../types";
 import { styles } from "./AvatarCardStyles";
 import ProgressBar from "./ProgressBar";
-import { avatarCardProps as Props } from "../types";
 
-export default function AvatarCard({ name, level, xp, xpMax, avatar }: Props) {
+export default function AvatarCard({ name, level, xp, xpMax, coin,  avatar }: Props) {
   const progress = xp / xpMax;
 
   return (
@@ -26,8 +26,10 @@ export default function AvatarCard({ name, level, xp, xpMax, avatar }: Props) {
         </View>
 
         <ProgressBar
-          icon={require("../../../assets/coin.png")} 
-          valueText="200"
+          icon={require("../../../assets/coin.png")}
+          progress={coin / coin}
+          valueText={`${coin}`}
+          styleFill={styles.fill}
         />
 
       </View>

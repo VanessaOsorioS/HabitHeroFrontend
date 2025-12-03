@@ -120,4 +120,68 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginLeft: 8,
+    marginBottom: 4,
+  },
+  successOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+
+  successBox: {
+    width: 280,
+    backgroundColor: "#FFEBB7", // color cálido tipo pergamino
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    borderRadius: 18,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8,
+  },
+
+  successIcon: {
+    fontSize: 50,
+    marginBottom: 10,
+  },
+
+  successTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "#5B3A09",
+  },
+
+  successMessage: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 18,
+    color: "#6B4B1F",
+  },
+
+  successButton: {
+    backgroundColor: "#0099cc",
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 12,
+  },
+
+  successButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
 });

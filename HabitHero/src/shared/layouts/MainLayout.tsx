@@ -1,23 +1,24 @@
-import React from "react";
-import { View, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { MainLayoutStyles as styles } from "./MainLayout.styles";
+import React from "react";
+import { ImageBackground, View } from "react-native";
 import MainMenu, { MenuOption } from "../menu/MainMenu";
+import { MainLayoutStyles as styles } from "./MainLayout.styles";
 
 type Props = {
   children: React.ReactNode;
   onSelectMenuOption?: (option: MenuOption) => void;
+  onLogout?: () => void;
   showMenu?: boolean;
 };
 
-export default function MainLayout({ children, onSelectMenuOption, showMenu = true,}: Props) {
+export default function MainLayout({ children, onSelectMenuOption, onLogout, showMenu = true,}: Props) {
   return (
     <View style={styles.container}>
 
       {/* Menú*/}
       {showMenu && (
         <View style={styles.menuAbsolute}>
-          <MainMenu onSelectOption={onSelectMenuOption} />
+          <MainMenu onSelectOption={onSelectMenuOption} onLogout={onLogout} />
         </View>
       )}
       <ImageBackground
